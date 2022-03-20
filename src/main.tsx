@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Carrito, Home, Orders } from "./views";
+import { Cart, Home, Orders } from "./views";
 import { Nav } from "./components/Nav";
 import styled from "styled-components";
+import { Provider } from "react-redux";
+import { store } from './db/store'
 const ContentBG = styled.div`
   min-height: 100vh;
   min-width: 100vw;
@@ -32,6 +34,8 @@ const Content = styled.div`
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
+
     <BrowserRouter>
       <Nav />
       <ContentBG>
@@ -39,11 +43,12 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Content>
       </ContentBG>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
