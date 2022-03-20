@@ -1,8 +1,8 @@
 import React from "react";
 import {
   HomeOutlined,
-  SettingsApplicationsOutlined,
-  LanguageOutlined,
+  ShopOutlined,
+  PersonOutlineOutlined,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -36,11 +36,11 @@ export const Nav = () => {
         <Link to="/">
           <HomeOutlined />
         </Link>
-        <Link to="/carrito">
-          <SettingsApplicationsOutlined />
+        <Link to="/cart">
+          <ShopOutlined />
         </Link>
         <Link to="/orders">
-          <LanguageOutlined />
+          <PersonOutlineOutlined />
         </Link>
       </Icons>
     </NavSt>
