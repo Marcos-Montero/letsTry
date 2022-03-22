@@ -6,14 +6,13 @@ import { v4 } from 'uuid'
 const ordersSlice = createSlice({
     name: 'orders',
     initialState: {
-        values: []
+        value: []
     },
     reducers: {
         addOrder: (state: any, action: any)=> {
-            state.values.push({
-                id: v4(),
-                products: action.products,
-                price: action.price,
+            state.value.push({
+                products: action.payload.products,
+                price: action.payload.price,
                 date: Date.now()
             })
         }

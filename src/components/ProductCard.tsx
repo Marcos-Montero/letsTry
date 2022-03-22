@@ -1,15 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { addProduct } from "../db/slices";
-import { BuyButton } from "./BuyButton";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { v4 } from 'uuid'
+import { addToCart } from '../db/slices'
+import { BuyButton } from './BuyButton'
+import { ICard } from './types'
 
-interface ICard {
-  name: string;
-  description: string;
-  img: string;
-  price: number;
-}
+
 const Card = styled.div`
   border-radius: 20px;
   height: 200px;
@@ -18,11 +15,11 @@ const Card = styled.div`
   margin: 10px;
   display: flex;
   overflow: hidden;
-`;
+`
 const Imagen = styled.img`
   width: 100%;
   height: auto;
-`;
+`
 const ImgContainer = styled.div`
   margin: -10px 20px -10px -10px;
   display: flex;
@@ -32,33 +29,35 @@ const ImgContainer = styled.div`
   overflow: hidden;
   width: 350px;
   height: 200px;
-`;
+`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px 20px 0;
-`;
+`
 const BottomContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `
 export const ProductCard: React.FC<ICard> = ({
+  id,
   name,
   description,
   img,
   price,
 }) => {
-  const dispatch = useDispatch();
-  function addToCart() {
+  const dispatch = useDispatch()
+  function btnHandle() {
     dispatch(
-      addProduct({
+      addToCart({
+        id: v4(),
         name,
         description,
         img,
-        price
+        price,
       })
-    );
+    )
   }
   return (
     <Card>
@@ -70,9 +69,9 @@ export const ProductCard: React.FC<ICard> = ({
         <p>{description}</p>
         <BottomContainer>
           <h4>{price} €</h4>
-          <BuyButton action={addToCart} />
+          <BuyButton action={btnHandle} />
         </BottomContainer>
       </MainContainer>
     </Card>
-  );
-};
+  )
+}

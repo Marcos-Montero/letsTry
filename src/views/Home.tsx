@@ -1,6 +1,5 @@
 import React from "react";
 import { ProductCard } from "../components/ProductCard";
-import { products } from "../db"
 import { useSelector } from "react-redux";
 export const Home = () => {
   const productList = useSelector((state: any)=>state.products.value)

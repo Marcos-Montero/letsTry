@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { IButton } from './types'
 
-interface IButton {
-    action: () => void
-}
+
 const Button = styled.button`
     outline: none;
     background: red;

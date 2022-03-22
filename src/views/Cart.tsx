@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BuyNowButton } from '../components/BuyNowButtton'
 import { CartCard } from '../components/CartCard'
-import { addOrder } from '../db/slices'
+import { addOrder, resetCart } from '../db/slices'
 
 export const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0)
@@ -18,9 +18,10 @@ export const Cart = () => {
   }, [cartProducts])
   const sendOrder = () =>{
     dispatch(addOrder({
-      products: [...productsList],
+      products: productsList,
       price: totalPrice
     }))
+    dispatch(resetCart())
   }
   return (
     <>

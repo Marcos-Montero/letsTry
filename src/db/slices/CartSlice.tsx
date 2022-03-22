@@ -4,19 +4,21 @@ import { IProduct } from '../types'
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    value: [] as IProduct[]
+    value: [] as IProduct[],
   },
   reducers: {
-    addProduct: (state, action: any) => {
+    addToCart: (state, action: any) => {
       state.value.push(action.payload)
     },
-    deleteProduct: (state, action) => {
-      state.value.filter(action.payload)
+    deleteFromCart: (state, action) => {
+      state.value = state.value.filter(({ id }) => id !== action.payload)
     },
+    resetCart: (state)=> {
+      state.value = []
+    }
   },
 })
 // acciones
-export const { addProduct, deleteProduct } = cartSlice.actions
+export const { addToCart, deleteFromCart, resetCart } = cartSlice.actions
 // reducer
 export const cartReducer = cartSlice.reducer
-
