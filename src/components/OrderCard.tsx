@@ -1,4 +1,5 @@
-import React from 'react'
+import { Chip } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ICard, ICardOrder } from './types'
 
@@ -6,6 +7,7 @@ const Card = styled.div`
   border-radius: 20px;
   min-height: 200px;
   width: 100%;
+  max-width: 300px;
   box-shadow: 1px 1px 3px gray;
   margin: 10px;
   display: flex;
@@ -31,27 +33,29 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px 20px 0;
+  gap: 1em;
 `
-const BottomContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-`
+
+
 export const OrderCard: React.FC<ICardOrder> = ({ products, price, date }) => {
-    
+  const [filteredArray, setFilteredArray] = useState([])
+  useEffect(() => {
+    setFilteredArray(products.reduce(
+      (acc: any, v: any): any => {
+        if (!(acc.includes(v))) return [...acc, v]
+      },
+      ['']
+    ))
+    }, [products]
+    )
     return (
   <Card>
-    <h3>Importe: {price} €</h3>
-    <BottomContainer>
-      <h4>Fecha: {new Intl.DateTimeFormat('es-ES', { dateStyle: 'full', timeStyle: 'long' }).format(date)}</h4>
-    </BottomContainer>
-
     <MainContainer>
-      <ul>
-        {products.map((v, i) => (
-          <li key={i}>{v}</li>
-        ))}
-      </ul>
+        {filteredArray.map((v, i) => (
+          <Chip key={i} label={v} variant="outlined"/>
+          ))}
+          <Chip color="primary" label={`Importe: ${price} €`} />
+          <Chip label={new Intl.DateTimeFormat('es-ES', { dateStyle: 'full', timeStyle: 'long' }).format(date)} color="secondary" variant="outlined"/>
     </MainContainer>
   </Card>
     )
