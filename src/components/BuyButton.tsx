@@ -11,6 +11,12 @@ const Button = styled.button`
     border-radius: 10px;
     align-self: flex-end;
     font-weight:bolder;
+    &:hover {
+      background: #f1c26a;
+    }
+    &:active {
+      background: #da9f31;
+    }
 
 `
 export const BuyButton:React.FC<IButton> = ({action}) => {
