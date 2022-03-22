@@ -8,8 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "@material-ui/icons": "^4.11.2",
+    "@mui/material": "^5.5.2",
     "@reduxjs/toolkit": "^1.8.0",
+    "@types/material-ui": "^0.21.12",
     "@types/react-redux": "^7.1.23",
     "@types/styled-components": "^5.1.24",
     "react": "^17.0.2",
