@@ -35,7 +35,6 @@ const Content = styled.div`
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-
     <BrowserRouter>
       <Nav />
       <ContentBG>
